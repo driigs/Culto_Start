@@ -64,6 +64,14 @@
             text-shadow: 2px 2px 0px #000;
             margin: 5px 0;
         }
+        .final-text {
+            font-size: 32px; /* Tamanho da fonte */
+            color: red; /* Cor vermelha */
+            text-shadow: 2px 2px 0px #000; /* Sombra preta */
+            font-family: 'Press Start 2P', cursive; /* Fonte pixelada */
+            margin-top: 20px; /* Espaçamento acima */
+            font-weight: bold; /* Texto em negrito */
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
@@ -100,6 +108,8 @@
             <div class="match" contenteditable="true"></div>
             <div class="vs">X</div>
             <div class="match" contenteditable="true"></div>
+            <!-- Adicione a palavra FINAL aqui -->
+            <div class="final-text">FINAL</div>
         </div>
         
         <!-- Lado direito (espelhado) -->
