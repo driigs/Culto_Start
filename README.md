@@ -6,10 +6,10 @@
     <title>START JOVENS NOVA SANTA RITA</title>
     <style>
         body {
-            background-color: #5c94fc;
-            background-image: url('https://www.mariomayhem.com/downloads/misc_pics/smw_clouds.gif');
-            background-size: cover;
-            background-repeat: no-repeat;
+            background-color: #0078F0;
+            background-image: url('https://www.videogamesprites.net/SonicTheHedgehog/Objects/Rings/GoldRing.gif');
+            background-size: 100px;
+            background-repeat: repeat;
             background-position: center;
             color: white;
             font-family: 'Press Start 2P', cursive;
@@ -17,14 +17,18 @@
             transform: scale(0.9);
             transform-origin: top;
         }
-        .title, .footer {
+        .title {
             color: yellow;
-            font-size: 48px;
+            font-size: 96px;
             text-shadow: 4px 4px 0px #000;
             font-weight: bold;
             margin-bottom: 20px;
         }
         .footer {
+            color: yellow;
+            font-size: 48px;
+            text-shadow: 4px 4px 0px #000;
+            font-weight: bold;
             margin-top: 50px;
         }
         .bracket {
@@ -42,7 +46,7 @@
         .match {
             width: 180px;
             height: 50px;
-            background: linear-gradient(135deg, #ffcc00, #ff6600);
+            background: linear-gradient(135deg, #FFD700, #FFAA00);
             border-radius: 10px;
             border: 3px solid #000;
             box-shadow: 4px 4px 0px #000;
@@ -55,7 +59,7 @@
             color: black;
         }
         .match:hover {
-            background: linear-gradient(135deg, #ff6600, #ffcc00);
+            background: linear-gradient(135deg, #FFAA00, #FFD700);
         }
         .vs {
             font-size: 24px;
@@ -65,12 +69,12 @@
             margin: 5px 0;
         }
         .final-text {
-            font-size: 32px; /* Tamanho da fonte */
-            color: red; /* Cor vermelha */
-            text-shadow: 2px 2px 0px #000; /* Sombra preta */
-            font-family: 'Press Start 2P', cursive; /* Fonte pixelada */
-            margin-top: 20px; /* Espaçamento acima */
-            font-weight: bold; /* Texto em negrito */
+            font-size: 32px;
+            color: red;
+            text-shadow: 2px 2px 0px #000;
+            font-family: 'Press Start 2P', cursive;
+            margin-top: 20px;
+            font-weight: bold;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
@@ -79,7 +83,6 @@
     <div class="title">START</div>
     
     <div class="bracket">
-        <!-- Lado esquerdo -->
         <div class="round">
             <div class="match" contenteditable="true">Jogador 1</div>
             <div class="vs">X</div>
@@ -103,16 +106,13 @@
             <div class="match" contenteditable="true"></div>
         </div>
         
-        <!-- Centro -->
         <div class="round">
             <div class="match" contenteditable="true"></div>
             <div class="vs">X</div>
             <div class="match" contenteditable="true"></div>
-            <!-- Adicione a palavra FINAL aqui -->
             <div class="final-text">FINAL</div>
         </div>
         
-        <!-- Lado direito (espelhado) -->
         <div class="round">
             <div class="match" contenteditable="true"></div>
             <div class="vs">X</div>
