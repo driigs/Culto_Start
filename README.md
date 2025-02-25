@@ -6,29 +6,59 @@
     <title>START JOVENS NOVA SANTA RITA</title>
     <style>
         body {
-            background-color: #0078F0;
-            background-image: url('https://www.videogamesprites.net/SonicTheHedgehog/Objects/Rings/GoldRing.gif');
-            background-size: 100px;
-            background-repeat: repeat;
+            background-color: #5c94fc;
+            background-image: url('https://www.mariomayhem.com/downloads/misc_pics/smw_clouds.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
             background-position: center;
             color: white;
             font-family: 'Press Start 2P', cursive;
             text-align: center;
             transform: scale(0.9);
             transform-origin: top;
+            margin: 0;
+            padding: 0;
         }
-        .title {
-            color: yellow;
-            font-size: 96px;
+        .title, .footer {
+            font-size: 48px;
             text-shadow: 4px 4px 0px #000;
             font-weight: bold;
             margin-bottom: 20px;
         }
+        .title {
+            font-size: 96px;
+            animation: bounce 2s infinite;
+            margin-top: 20px; /* Ajuste para descer a palavra START */
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+        .title span, .footer span {
+            display: inline-block;
+        }
+        .title span:nth-child(1) { color: red; }
+        .title span:nth-child(2) { color: blue; }
+        .title span:nth-child(3) { color: yellow; }
+        .title span:nth-child(4) { color: green; }
+        .title span:nth-child(5) { color: red; }
+        .footer span:nth-child(1) { color: red; }
+        .footer span:nth-child(2) { color: blue; }
+        .footer span:nth-child(3) { color: yellow; }
+        .footer span:nth-child(4) { color: green; }
+        .footer span:nth-child(5) { color: red; }
+        .footer span:nth-child(6) { color: blue; }
+        .footer span:nth-child(7) { color: yellow; }
+        .footer span:nth-child(8) { color: green; }
+        .footer span:nth-child(9) { color: red; }
         .footer {
-            color: yellow;
-            font-size: 48px;
-            text-shadow: 4px 4px 0px #000;
-            font-weight: bold;
             margin-top: 50px;
         }
         .bracket {
@@ -46,7 +76,7 @@
         .match {
             width: 180px;
             height: 50px;
-            background: linear-gradient(135deg, #FFD700, #FFAA00);
+            background: linear-gradient(135deg, #ffcc00, #ff6600);
             border-radius: 10px;
             border: 3px solid #000;
             box-shadow: 4px 4px 0px #000;
@@ -59,7 +89,7 @@
             color: black;
         }
         .match:hover {
-            background: linear-gradient(135deg, #FFAA00, #FFD700);
+            background: linear-gradient(135deg, #ff6600, #ffcc00);
         }
         .vs {
             font-size: 24px;
@@ -80,7 +110,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="title">START</div>
+    <div class="title">
+        <span>S</span><span>T</span><span>A</span><span>R</span><span>T</span>
+    </div>
     
     <div class="bracket">
         <div class="round">
@@ -137,6 +169,8 @@
         </div>
     </div>
     
-    <div class="footer">JOVENS NSR</div>
+    <div class="footer">
+        <span>J</span><span>O</span><span>V</span><span>E</span><span>N</span><span>S</span> <span>N</span><span>S</span><span>R</span>
+    </div>
 </body>
 </html>
