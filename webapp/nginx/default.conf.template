@@ -1,0 +1,12 @@
+server {
+    listen ${PORT};
+    root /usr/share/nginx/html;
+
+    location / {        
+        index index.htm index.html;
+    }
+
+    location ~ \.(gif|jpg|png)$ {
+        root /usr/share/nginx/images;
+    }
+}

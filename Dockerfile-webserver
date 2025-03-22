@@ -1,0 +1,18 @@
+FROM node:22
+
+COPY ./webserver/src/ ./src/
+COPY ./webserver/.nvmrc .
+COPY ./webserver/package.json .
+COPY ./webserver/package-lock.json .
+
+ENV NODE_ENV='production'
+RUN npm install
+
+ARG A_PORT="3000"
+EXPOSE $A_PORT
+
+ARG A_MONGODB_URI="mongodb://localhost:27017"
+
+ENV PORT=$A_PORT
+ENV MONGODB_URI=$A_MONGODB_URI
+CMD ["npm", "start"]

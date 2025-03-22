@@ -1,0 +1,10 @@
+FROM nginx:1.27.4
+
+COPY ./webapp/nginx/ /etc/nginx/templates/
+COPY ./webapp/static/ /usr/share/nginx/html
+COPY ./webapp/images/ /usr/share/nginx/images
+
+ARG A_PORT="8080"
+EXPOSE $A_PORT
+
+ENV PORT=$A_PORT
