@@ -1,13 +1,18 @@
 const app = require('./infrastructure/express')
 const logger = require('./infrastructure/logger')
-const port = process.env.PORT
+const mongo = require('./infrastructure/mongodb')
 
+const port = process.env.PORT
+const mongodbStr = process.env.MONGO_URI
+
+const mongoConn = mongo.connect(mongodbStr)
 app.listen(port, () => {
     logger.info(`app listening on port ${port}`)
 })
 
 const closeSvr = () => {
     logger.info(`app stopping on port ${port}`)
+    mongoConn.close()
     process.exit(0)
 }
 

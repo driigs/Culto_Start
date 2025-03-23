@@ -1,30 +1,19 @@
+const championshipModel = require('./model/championship')
+
 const getChampionships = async () => {
-    return [
-        {
-            _id: '1',
-            name: 'Test Championship 1'
-        },
-        {
-            _id: '2',
-            name: 'Test Championship 2'
-        }
-    ]
+    return championshipModel.findAll()
 }
 
-const getCpMatches = async (cpId) => {
-    return [
-        {
-            championshipId: cpId,
-            matchId: '1'
-        },
-        {
-            championshipId: cpId,
-            matchId: '2'
-        }
-    ]
+const getChampionship = async (cpId) => {
+    return championshipModel.findById(cpId)
+}
+
+const newChampionship = async (nOfPlayers) => {
+    return championshipModel.insert(nOfPlayers)
 }
 
 module.exports = {
     getChampionships,
-    getCpMatches
+    getChampionship,
+    newChampionship
 }

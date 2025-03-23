@@ -22,12 +22,12 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.get('/', asyncWrapper(async (req, res) => {
-     return res.redirect('/championship')
+     return res.redirect('/championships')
 }))
 
-app.get('/championship', asyncWrapper(startController.index))
-app.post('/championship', asyncWrapper(startController.newChampionship))
-app.get('/championship/:cpId', asyncWrapper(startController.getCpMatches))
-app.put('/championship/:cpId/matches/:mId', asyncWrapper(startController.updateCpMatch))
+app.get('/championships', asyncWrapper(startController.index))
+app.post('/championships', asyncWrapper(startController.newChampionship))
+app.get('/championships/:cpId', asyncWrapper(startController.getChampionship))
+app.put('/championships/:cpId/matches/:mId', asyncWrapper(startController.updateCpMatch))
 
 module.exports = app

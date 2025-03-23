@@ -11,8 +11,8 @@ RUN npm install
 ARG A_PORT="3000"
 EXPOSE $A_PORT
 
-ARG A_MONGODB_URI="mongodb://localhost:27017"
+ARG A_MONGO_URI="mongodb://host.docker.internal:27017/start"
 
 ENV PORT=$A_PORT
-ENV MONGODB_URI=$A_MONGODB_URI
+ENV MONGO_URI=$A_MONGO_URI
 CMD ["npm", "start"]
