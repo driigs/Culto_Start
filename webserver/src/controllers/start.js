@@ -2,39 +2,48 @@ const startSvc = require('./../services/start')
 const logger = require('./../infrastructure/logger')
 
 const index = async (req, res) => {
-    logger.info('Reading all championships from db...')
-    const cps = await startSvc.getChampionships()
+    logger.info('Reading default championship from db...')
+    const cp = await startSvc.getDefaultChampionship()
+        .catch(err => {
+            logger.error('Error reading default championship:', err)
+            return res.status(500).send('Error reading default championship!')
+        })
 
-    return res.send({
-        championships: cps
-    })
-}
-
-const newChampionship = async (req, res) => {
-    logger.info('Insert new championship into db...')
-    const nOfPlayers = req.body.nOfPlayers
-    const cp = startSvc.newChampionship(nOfPlayers)
-    return res.send(cp)
-}
-
-const getChampionship = async (req, res) => {
-    logger.info('Reading championship from db...')
-
-    const cpId = req.params.cpId
-    const cp = await startSvc.getChampionship(cpId)
-
+    if (cp == null || cp == undefined) {
+        logger.error('Could not found nor generate default championship!')
+        return res.status(404).send('Could not found nor generate default championship!')
+    }
+    
     return res.send(cp)
 }
 
 const updateCpMatch = async (req, res) => {
+    const side = req.params.side
+    const level = req.params.level
+    const matchId = req.params.mId
+
+    const {
+        playerA,
+        playerB,
+        scoreA,
+        scoreB,
+        winner
+    } = req.body
+
+    const success = await startSvc.updateCpMatch(side, level, matchId, playerA, playerB, scoreA, scoreB, winner)
+        .then((result) => {
+            return true
+        }).catch((err) => {
+            logger.error('Error updating match:', err)
+            return res.status(500).send('Error updating match!')
+        })
+    
     return res.send({
-        hello: 'world'
+        success
     })
 }
 
 module.exports = {
     index,
-    newChampionship,
-    getChampionship,
     updateCpMatch
 }

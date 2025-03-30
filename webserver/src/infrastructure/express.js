@@ -22,12 +22,17 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 
 app.get('/', asyncWrapper(async (req, res) => {
-     return res.redirect('/championships')
+     return res.redirect('/start')
 }))
 
-app.get('/championships', asyncWrapper(startController.index))
-app.post('/championships', asyncWrapper(startController.newChampionship))
-app.get('/championships/:cpId', asyncWrapper(startController.getChampionship))
-app.put('/championships/:cpId/matches/:mId', asyncWrapper(startController.updateCpMatch))
+// Below are the routes for single championship version
+app.get('/start', asyncWrapper(startController.index))
+app.put('/start/matches/:side/:level/:mId', asyncWrapper(startController.updateCpMatch))
+
+// Below are the routes for the dynamic version. Now will go with single championship version
+// app.get('/championships', asyncWrapper(startController.index))
+// app.post('/championships', asyncWrapper(startController.newChampionship))
+// app.get('/championships/:cpId', asyncWrapper(startController.getChampionship))
+// app.put('/championships/:cpId/matches/:mId', asyncWrapper(startController.updateCpMatch))
 
 module.exports = app

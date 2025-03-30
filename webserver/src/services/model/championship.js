@@ -3,8 +3,8 @@ const Schema = mongoose.Schema
 
 const matchSchema = new Schema({
     id: Number,
-    side: String,
     level: Number,
+    side: String,    
     players: {
         playerA: String,
         playerB: String
@@ -13,82 +13,134 @@ const matchSchema = new Schema({
         playerA: Number,
         playerB: Number
     },
-    winner: String
+    winner: String,
+    winnerNextMatch: {
+        id: Number,
+        level: Number,
+        side: String,
+        player: String
+    }
 })
 
 const cpSchema = new Schema({
     levels: Number,
     qtyPlayers: Number,
-    matches: [
-        matchSchema
-    ],
+    createDate: Date,
+    updateDate: Date,
+    matches: {
+        left: [
+            [ matchSchema ]
+        ],
+        right: [
+            [ matchSchema ]
+        ],
+        final: matchSchema
+    },
     winner: String
 })
 
 const Championship = mongoose.model('Championship', cpSchema)
 
 const findAll = async () => {
-    return Championship.find({}, { _id: 1 })
+    return Championship.find({})
 }
 
 const findById = async (cpId) => {
     return Championship.findById(cpId)
 }
 
-const insert = async (nOfPlayers) => {
-    const cp = await createMatches(new Championship(), nOfPlayers)
+const insertDefault = async () => {
+    const cp = await generateDefaultChampuionship()
     await cp.save()
     return cp
 }
 
-const updateCpWinner = async (id, val) => {
-    const cp = await Championship.findById(id)
-    cp.winner = val
-
-    await cp.save()
+const getCpMatch = async (cpObj, side, level, matchId) => {
+    return cpObj.matches[side][level-1][matchId-1]
 }
 
-const createMatches = async (cp, nOfPlayers) => {
-    const nOfLevels = Math.sqrt(nOfPlayers) 
-    
-    let remainingPlayers = nOfPlayers
-    let matchId = 0
-    let matchSide = 'a'
-    for (let i=0; i < nOfLevels; i++) {
-        for (let j=0; j < (remainingPlayers / 2); i++) {
-            matchId++
-            cp.matches.push(generateDefaultMatch(matchId, matchSide, i))
-            matchSide = (matchSide == 'a') ? 'b' : 'a'
-        }
-        remainingPlayers = remainingPlayers / 2
+const updateCpMatch = async (cpObj, side, level, matchId, match) => {
+    const cp = await findById(cpObj._id)
+
+    if (cp == null || cp == undefined) {
+        throw new Error('Invalid championship!')
     }
 
+    const upd = {
+        updateDate: new Date(),
+        ['matches.' + side + '.' + (level-1) + '.' + (matchId-1)]: match
+    }
+
+    return Championship.findByIdAndUpdate(cp._id, upd)
+}
+
+const generateDefaultChampuionship = async () => {
+    const cp = new Championship({
+        levels: 3,
+        qtyPlayers: 16,
+        createDate: new Date(),
+        updateDate: new Date(),
+        matches: {
+            left: [
+                [ 
+                    generateDefaultMatch(1, 1, 'left', 1, 2, 'left', 'A'), 
+                    generateDefaultMatch(2, 1, 'left', 1, 2, 'left', 'A'),
+                    generateDefaultMatch(3, 1, 'left', 2, 2, 'left', 'B'),
+                    generateDefaultMatch(4, 1, 'left', 2, 2, 'left', 'B')
+                ],
+                [ 
+                    generateDefaultMatch(1, 2, 'left', 1, 1, 'final', 'A'), 
+                    generateDefaultMatch(2, 2, 'left', 1, 1, 'final', 'A') 
+                ]
+            ],
+            right: [
+                [ 
+                    generateDefaultMatch(1, 1, 'right', 1, 2, 'right', 'A'),
+                    generateDefaultMatch(2, 1, 'right', 1, 2, 'right', 'A'),
+                    generateDefaultMatch(3, 1, 'right', 2, 2, 'right', 'B'),
+                    generateDefaultMatch(4, 1, 'right', 2, 2, 'right', 'B')                    
+                ],
+                [ 
+                    generateDefaultMatch(1, 2, 'right', 1, 1, 'final', 'B'), 
+                    generateDefaultMatch(2, 2, 'right', 1, 1, 'final', 'B') 
+                ]
+            ],
+            final: generateDefaultMatch(1, 1)
+        },
+        winner: ''
+    })
+
     return cp
 }
 
-const deleteById = async (id) => {
-    await Championship.findByIdAndDelete(id)
-}
-
-const generateDefaultMatch = (matchId, matchSide, level) => {
-    return {
-        id: matchId,
-        side: matchSide,
-        level: level,
+const generateDefaultMatch = (id, level, side = '', nextId = 0, nextLevel = 0, nextSide = '', nextPlayer = '') => {
+    const match = {
+        id,
+        level,
+        side,
         players: {
-            playerA: 'Player A',
-            playerB: 'Player B'
+            playerA: 'A',
+            playerB: 'B'
         },
         score: {
             playerA: 0,
             playerB: 0
         },
-        winner: ''
+        winner: '',
+        winnerNextMatch: {
+            id: nextId,
+            level: nextLevel,
+            side: nextSide,
+            player: nextPlayer
+        }
     }
+
+    return match
 }
 
 module.exports = {
     findAll,
-    insert,
-    deleteById
+    insertDefault,
+    getCpMatch,
+    updateCpMatch
 }
