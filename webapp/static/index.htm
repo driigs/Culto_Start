@@ -5,125 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
     <script src="script.js"></script>
 </head>
 <body>
+    <div id="dialog-confirm" title="Confirm" hidden="true">
+        <p>Are you sure you want to restart the championship?</p>
+    </div>
     <div class="container">
-        <img src="log_gincana.png" style="margin-top: 30px; max-width: 30%; height: auto;">
+        <img src="log_gincana.png" style="margin-bottom: -5%; max-width: 30%; height: auto;">
     
         <main class="matches">
             <div class="levels">
-                Oitavas left
+                <!-- Oitavas left -->
                 <div class="matches-levels">
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
+                    <div class="match" data-side="left" data-level="1" data-mId="1" data-wnm-side="left" data-wnm-level="2" data-wnm-mId="1" data-wnm-player="A">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
                     </div>
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
+                    <div class="match" data-side="left" data-level="1" data-mId="2" data-wnm-side="left" data-wnm-level="2" data-wnm-mId="1" data-wnm-player="B">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
                     </div>
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
+                    <div class="match" data-side="left" data-level="1" data-mId="3" data-wnm-side="left" data-wnm-level="2" data-wnm-mId="2" data-wnm-player="A">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
                     </div>
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
+                    <div class="match" data-side="left" data-level="1" data-mId="4" data-wnm-side="left" data-wnm-level="2" data-wnm-mId="2" data-wnm-player="B">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
                     </div>
                 </div>
             </div>
             
             <div class="levels">
-                Quartas left
+                <!-- Quartas left -->
                 <div class="matches-levels">
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
+                    <div class="match" data-side="left" data-level="2" data-mId="1" data-wnm-side="left" data-wnm-level="3" data-wnm-mId="1" data-wnm-player="A">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
                     </div>
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
+                    <div class="match" data-side="left" data-level="2" data-mId="2" data-wnm-side="left" data-wnm-level="3" data-wnm-mId="1" data-wnm-player="B">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
                     </div>
                 </div>
             </div>
             <div class="levels">
-                Semifinal left
+                <!-- Semifinal left -->
                 <div class="matches-levels">
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
+                    <div class="match" data-side="left" data-level="3" data-mId="1" data-wnm-side="final" data-wnm-level="1" data-wnm-mId="1" data-wnm-player="A">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
                     </div>
                 </div>
             </div>
             <div class="levels">
-                Final left
+                <!-- Final left -->
                 <div class="matches-levels">
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
+                    <div class="match" data-side="final" data-level="1" data-mId="1">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_final_score_a" placeholder="0"/></div>
                     </div>
                 </div>
             </div>
             <div class="levels">
-                Vencedor
+                <!-- Vencedor -->
                 <div class="levels-winner">
-                    <div class="winner" id="winner"><input type="text" value="WINNER" disabled/></div>
+                    <div class="winner" id="winner"><input type="text" id="p_winner_name" placeholder="WINNER" disabled/></div>
                 </div>
             </div>
             <div class="levels">
-                Final right
+                <!-- Final right -->
                 <div class="matches-levels">
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
-                    </div>
-                </div>
-            </div>
-            <div class="levels">
-                Semifinal right
-                <div class="matches-levels">
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
+                    <div class="match" data-side="final" data-level="1" data-mId="1">
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_final_score_b" placeholder="0"/></div>
                     </div>
                 </div>
             </div>
             <div class="levels">
-                Quartas Right
+                <!-- Semifinal right -->
                 <div class="matches-levels">
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
-                    </div>
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
+                    <div class="match" data-side="right" data-level="3" data-mId="1" data-wnm-side="final" data-wnm-level="1" data-wnm-mId="1" data-wnm-player="B">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
                     </div>
                 </div>
             </div>
             <div class="levels">
-                Oitavas Right
+                <!-- Quartas Right -->
                 <div class="matches-levels">
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
+                    <div class="match" data-side="right" data-level="2" data-mId="1" data-wnm-side="right" data-wnm-level="3" data-wnm-mId="1" data-wnm-player="A">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
                     </div>
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
+                    <div class="match" data-side="right" data-level="2" data-mId="2" data-wnm-side="right" data-wnm-level="3" data-wnm-mId="1" data-wnm-player="B">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
                     </div>
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
+                </div>
+            </div>
+            <div class="levels">
+                <!-- Oitavas Right -->
+                <div class="matches-levels">
+                    <div class="match" data-side="right" data-level="1" data-mId="1" data-wnm-side="right" data-wnm-level="2" data-wnm-mId="1" data-wnm-player="A">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
                     </div>
-                    <div class="match">
-                        <div class="player-score"><input type="text" value="Player A"/><input type="number" value="0"/></div>
-                        <div class="player-score"><input type="text" value="Player B"/><input type="number" value="0"/></div>
+                    <div class="match" data-side="right" data-level="1" data-mId="2" data-wnm-side="right" data-wnm-level="2" data-wnm-mId="1" data-wnm-player="B">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                    <div class="match" data-side="right" data-level="1" data-mId="3" data-wnm-side="right" data-wnm-level="2" data-wnm-mId="2" data-wnm-player="A">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                    <div class="match" data-side="right" data-level="1" data-mId="4" data-wnm-side="right" data-wnm-level="2" data-wnm-mId="2" data-wnm-player="B">
+                        <div class="player-score"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
                     </div>
                 </div>
             </div>
         </main>
     
-        <img src="logo_jovens.png" style="max-width: 5%; height: auto;">
+        <img src="logo_jovens.png" style="margin-top: -5%; max-width: 5%; height: auto;">
+        
+        <div class="reset-button">
+            <input type="button" id="restart-cp-btn" value="RESTART"/>
+        </div>
     </div>
 </body>
 </html>

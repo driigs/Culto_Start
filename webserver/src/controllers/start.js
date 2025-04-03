@@ -30,6 +30,17 @@ const updateCpMatch = async (req, res) => {
         winner
     } = req.body
 
+    logger.info('Updating match:', {
+        side,
+        level,
+        matchId,
+        playerA,
+        playerB,
+        scoreA,
+        scoreB,
+        winner
+    })
+
     const success = await startSvc.updateCpMatch(side, level, matchId, playerA, playerB, scoreA, scoreB, winner)
         .then((result) => {
             return true
@@ -43,7 +54,24 @@ const updateCpMatch = async (req, res) => {
     })
 }
 
+const deleteChampionship = async (req, res) => {
+    logger.info('Deleting championship...')
+
+    const success = await startSvc.deleteChampionship()
+        .then((result) => {
+            return true
+        }).catch((err) => {
+            logger.error('Error deleting championship:', err)
+            return res.status(500).send('Error deleting championship!')
+        })
+    
+    return res.send({
+        success
+    })
+}
+
 module.exports = {
     index,
-    updateCpMatch
+    updateCpMatch,
+    deleteChampionship
 }

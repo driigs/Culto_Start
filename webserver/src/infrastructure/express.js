@@ -28,6 +28,7 @@ app.get('/', asyncWrapper(async (req, res) => {
 // Below are the routes for single championship version
 app.get('/start', asyncWrapper(startController.index))
 app.put('/start/matches/:side/:level/:mId', asyncWrapper(startController.updateCpMatch))
+app.delete('/start', asyncWrapper(startController.deleteChampionship))
 
 // Below are the routes for the dynamic version. Now will go with single championship version
 // app.get('/championships', asyncWrapper(startController.index))

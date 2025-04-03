@@ -3,7 +3,7 @@ const validStringWrapper = (value) => {
 }
 
 const validIntWrapper = (value) => {
-    return (value != null && value != undefined) ? value : 0
+    return (value != null && value != undefined && value != '') ? value : 0
 }
 
 module.exports = {

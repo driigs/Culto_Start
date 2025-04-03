@@ -30,10 +30,31 @@ const updateCpMatch = async (side, level, matchId, playerA, playerB, scoreA, sco
 
     match.winner = validStringWrapper(winner)
 
+    logger.info(`Updating match ${matchId} on side ${side} and level ${level}...`, {
+        playerA: match.players.playerA,
+        playerB: match.players.playerB,
+        scoreA: match.score.playerA,
+        scoreB: match.score.playerB,
+        winner: match.winner
+    })
+
     return championshipModel.updateCpMatch(cp, side, level, matchId, match)
+}
+
+const deleteChampionship = async () => {
+    logger.info('Deleting championship...')
+
+    const cp = await getDefaultChampionship()
+    if (cp == null || cp == undefined) {
+        logger.error('Could not found nor generate default championship!')
+        return false
+    }
+
+    return championshipModel.deleteChampionship(cp)
 }
 
 module.exports = {
     getDefaultChampionship,
-    updateCpMatch
+    updateCpMatch,
+    deleteChampionship
 }

@@ -34,7 +34,9 @@ const cpSchema = new Schema({
         right: [
             [ matchSchema ]
         ],
-        final: matchSchema
+        final: [
+            [ matchSchema ]
+        ]
     },
     winner: String
 })
@@ -61,12 +63,18 @@ const getCpMatch = async (cpObj, side, level, matchId) => {
 
 const updateCpMatch = async (cpObj, side, level, matchId, match) => {
     const cp = await findById(cpObj._id)
+    let cpWinner = ''
 
     if (cp == null || cp == undefined) {
         throw new Error('Invalid championship!')
     }
 
+    if (side === 'final' && match.winner !== '') {
+        cpWinner = match.winner
+    }
+
     const upd = {
+        winner: cpWinner,
         updateDate: new Date(),
         ['matches.' + side + '.' + (level-1) + '.' + (matchId-1)]: match
     }
@@ -84,28 +92,38 @@ const generateDefaultChampuionship = async () => {
             left: [
                 [ 
                     generateDefaultMatch(1, 1, 'left', 1, 2, 'left', 'A'), 
-                    generateDefaultMatch(2, 1, 'left', 1, 2, 'left', 'A'),
-                    generateDefaultMatch(3, 1, 'left', 2, 2, 'left', 'B'),
+                    generateDefaultMatch(2, 1, 'left', 1, 2, 'left', 'B'),
+                    generateDefaultMatch(3, 1, 'left', 2, 2, 'left', 'A'),
                     generateDefaultMatch(4, 1, 'left', 2, 2, 'left', 'B')
                 ],
                 [ 
-                    generateDefaultMatch(1, 2, 'left', 1, 1, 'final', 'A'), 
-                    generateDefaultMatch(2, 2, 'left', 1, 1, 'final', 'A') 
+                    generateDefaultMatch(1, 2, 'left', 1, 3, 'left', 'A'), 
+                    generateDefaultMatch(2, 2, 'left', 1, 3, 'left', 'B') 
+                ],
+                [ 
+                    generateDefaultMatch(1, 3, 'left', 1, 1, 'final', 'A'),
                 ]
             ],
             right: [
                 [ 
                     generateDefaultMatch(1, 1, 'right', 1, 2, 'right', 'A'),
-                    generateDefaultMatch(2, 1, 'right', 1, 2, 'right', 'A'),
-                    generateDefaultMatch(3, 1, 'right', 2, 2, 'right', 'B'),
+                    generateDefaultMatch(2, 1, 'right', 1, 2, 'right', 'B'),
+                    generateDefaultMatch(3, 1, 'right', 2, 2, 'right', 'A'),
                     generateDefaultMatch(4, 1, 'right', 2, 2, 'right', 'B')                    
                 ],
                 [ 
-                    generateDefaultMatch(1, 2, 'right', 1, 1, 'final', 'B'), 
-                    generateDefaultMatch(2, 2, 'right', 1, 1, 'final', 'B') 
+                    generateDefaultMatch(1, 2, 'right', 1, 3, 'right', 'A'), 
+                    generateDefaultMatch(2, 2, 'right', 1, 3, 'right', 'B') 
+                ],
+                [ 
+                    generateDefaultMatch(1, 3, 'right', 1, 1, 'final', 'B'),
                 ]
             ],
-            final: generateDefaultMatch(1, 1)
+            final: [
+                [
+                    generateDefaultMatch(1, 1, 'final')
+                ]
+            ]
         },
         winner: ''
     })
@@ -119,8 +137,8 @@ const generateDefaultMatch = (id, level, side = '', nextId = 0, nextLevel = 0, n
         level,
         side,
         players: {
-            playerA: 'A',
-            playerB: 'B'
+            playerA: '',
+            playerB: ''
         },
         score: {
             playerA: 0,
@@ -138,9 +156,18 @@ const generateDefaultMatch = (id, level, side = '', nextId = 0, nextLevel = 0, n
     return match
 }
 
+const deleteChampionship = async (cpObj) => {
+    if (cpObj == null || cpObj == undefined) {
+        throw new Error('Invalid championship!')
+    }
+
+    return Championship.findByIdAndDelete(cpObj._id)
+}
+
 module.exports = {
     findAll,
     insertDefault,
     getCpMatch,
-    updateCpMatch
+    updateCpMatch,
+    deleteChampionship
 }
