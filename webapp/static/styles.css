@@ -13,25 +13,44 @@ body {
     background-size: cover;
 }
 
-.reset-button {
+.alert-success {
+    color: #ffffff;
+    background-color: #5F9EF9;
+    border-color: #5F9EF9;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #5F9EF9;
+    border-color: #5F9EF9;
+}
+
+.btn-reset {
+    width: 75px;
+    color: #ffffff;
+    background-color: #C480CB;
+    border-color: #C480CB;
+    text-transform: uppercase;
+    text-align: center;
+    border: none;
+    font-size: x-small;
+    font-family: "helvetica", sans-serif;
+    font-weight: 400;
+}
+
+.div-reset {
     display: flex;
     flex-direction: row;
     align-self: end;
 }
 
-.reset-button input[type=button] {
-    width: 100px;
-    height: 20px;
-    text-transform: uppercase;
-    text-align: center;
-    border: none;
-    font-size: small;
-    font-family: "helvetica", sans-serif;
-    font-weight: 400;
-    border-radius: 5px;
-    background-color: #662D91;
-    border-color: #662D91;
-    color: white;
+.notificaions {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-self: end;
+    margin-right: 10px;
+    top: 10%;
 }
 
 .container {

@@ -24,8 +24,6 @@ document.addEventListener('DOMContentLoaded', function () {
     $("input[name='p_final_score_a'").on("change", updateCPMatchPlayerScore);
     $("input[name='p_final_score_b'").on("change", updateCPMatchPlayerScore);
 
-    $("input[id='restart-cp-btn']").on("click", restartChampionship)
-
     loadChampionship();
 });
 
@@ -78,6 +76,26 @@ function getCurrentCPMatchDataFromInput() {
     }
 }
 
+function disableCurrentMatchDivInputs() {
+    const fatherMatchDiv = $(this).parent().parent();
+    const side = fatherMatchDiv.attr('data-side');
+    const level = fatherMatchDiv.attr('data-level');
+    const matchId = fatherMatchDiv.attr('data-mId');
+
+    const currMatchDiv = getCurrentMatchDiv(side, level, matchId);
+    const strFinal = side === 'final' ? 'final_' : '';
+
+    currMatchDiv.find("input[name='p_name_a']").attr('disabled', true);
+    currMatchDiv.find("input[name='p_name_b']").attr('disabled', true);
+    currMatchDiv.find(`input[name='p_${strFinal}score_a']`).attr('disabled', true);
+    currMatchDiv.find(`input[name='p_${strFinal}score_b']`).attr('disabled', true);
+    
+    currMatchDiv.find("input[name='p_name_a']").attr('readonly', true);
+    currMatchDiv.find("input[name='p_name_b']").attr('readonly', true);
+    currMatchDiv.find(`input[name='p_${strFinal}score_a']`).attr('readonly', true);
+    currMatchDiv.find(`input[name='p_${strFinal}score_b']`).attr('readonly', true);
+}
+
 function updateWinnerNextMatchDiv(nextMatchDiv, currMatchValues, winner) {
     const strFinal = currMatchValues.wnm.side === 'final' ? 'final_' : '';
 
@@ -89,6 +107,7 @@ function updateWinnerNextMatchDiv(nextMatchDiv, currMatchValues, winner) {
 
     nextMatchPlayerNameInput.val(winner);
     nextMatchPlayerScoreInput.val(0);
+    nextMatchPlayerNameInput.trigger('change');
 }
 
 function updateCPMatch() {
@@ -110,7 +129,12 @@ function updateCPMatch() {
     }
 
     if (winnerPlayer !== '') {
-        alert(`${winnerPlayer} won the ${currMatchValues.side === 'final' ? 'championship' : 'match'}!`);
+        const winnerMsg = `${winnerPlayer} venceu ${currMatchValues.side === 'final' ? 'o campeanoto' : 'a partida'}!`;
+
+        $("#notificaions").append(`<div class="alert alert-success alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>${winnerMsg}</strong>
+        </div>`);
 
         if (currMatchValues.side === 'final') {
             const cpWinnerInput = $("input[id='p_winner_name']");
@@ -119,6 +143,7 @@ function updateCPMatch() {
             const nextMatchDiv = getNextMatchDiv(currMatchValues);
             updateWinnerNextMatchDiv(nextMatchDiv, currMatchValues, winnerPlayer);
         }
+        disableCurrentMatchDivInputs.call(this);
     }
 
     $.ajax({
@@ -161,6 +186,18 @@ function renderChampionship(championship) {
                 matchDiv.find("input[name='p_name_b']").val(matchData.players.playerB);
                 matchDiv.find(`input[name='p_${strFinal}score_a']`).val(matchData.score.playerA);
                 matchDiv.find(`input[name='p_${strFinal}score_b']`).val(matchData.score.playerB);
+
+                if (matchData.winner !== '') {
+                    matchDiv.find("input[name='p_name_a']").attr('disabled', true);
+                    matchDiv.find("input[name='p_name_b']").attr('disabled', true);
+                    matchDiv.find(`input[name='p_${strFinal}score_a']`).attr('disabled', true);
+                    matchDiv.find(`input[name='p_${strFinal}score_b']`).attr('disabled', true);
+                    
+                    matchDiv.find("input[name='p_name_a']").attr('readonly', true);
+                    matchDiv.find("input[name='p_name_b']").attr('readonly', true);
+                    matchDiv.find(`input[name='p_${strFinal}score_a']`).attr('readonly', true);
+                    matchDiv.find(`input[name='p_${strFinal}score_b']`).attr('readonly', true);
+                }
             }
         }
     }
@@ -191,7 +228,6 @@ function clearChampionship(championship) {
         for (let level = 0; level < sideMatches.length; level++) {
             const levelMatches = sideMatches[level];
             for (let matchId = 0; matchId < levelMatches.length; matchId++) {
-                const matchData = levelMatches[matchId];
                 const matchDiv = getCurrentMatchDiv(side, level + 1, matchId + 1);
                 const strFinal = side === 'final' ? 'final_' : '';
 
@@ -199,6 +235,16 @@ function clearChampionship(championship) {
                 matchDiv.find("input[name='p_name_b']").val('');
                 matchDiv.find(`input[name='p_${strFinal}score_a']`).val('');
                 matchDiv.find(`input[name='p_${strFinal}score_b']`).val('');
+
+                matchDiv.find("input[name='p_name_a']").attr('disabled', false);
+                matchDiv.find("input[name='p_name_b']").attr('disabled', false);
+                matchDiv.find(`input[name='p_${strFinal}score_a']`).attr('disabled', false);
+                matchDiv.find(`input[name='p_${strFinal}score_b']`).attr('disabled', false);
+
+                matchDiv.find("input[name='p_name_a']").attr('readonly', false);
+                matchDiv.find("input[name='p_name_b']").attr('readonly', false);
+                matchDiv.find(`input[name='p_${strFinal}score_a']`).attr('readonly', false);
+                matchDiv.find(`input[name='p_${strFinal}score_b']`).attr('readonly', false);
             }
         }
     }
@@ -216,30 +262,16 @@ function clearChampionship(championship) {
 }
 
 function restartChampionship() {
-    $( "#dialog-confirm" ).dialog({
-        resizable: false,
-        height: "auto",
-        width: 400,
-        modal: true,
-        buttons: {
-            "Restart": function() {
-                $.ajax({
-                    type: 'GET',
-                    url: '/api/start',
-                    contentType: 'application/json',
-                    success: function (response) {
-                        console.info('loadChampionship', response);
-                        clearChampionship(response);
-                    },
-                    error: function (error) {
-                        console.error('loadChampionship', error);
-                    }
-                });
-                $( this ).dialog( "close" );
-            },
-            Cancel: function() {
-                $( this ).dialog( "close" );
-            }
+    $.ajax({
+        type: 'GET',
+        url: '/api/start',
+        contentType: 'application/json',
+        success: function (response) {
+            console.info('loadChampionship', response);
+            clearChampionship(response);
+        },
+        error: function (error) {
+            console.error('loadChampionship', error);
         }
     });
 }

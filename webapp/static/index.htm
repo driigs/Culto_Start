@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
 
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script>
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="styles.css">
     <script src="script.js"></script>
 </head>
 <body>
-    <div id="dialog-confirm" title="Confirm" hidden="true">
-        <p>Are you sure you want to restart the championship?</p>
-    </div>
-    <div class="container">
+    <div class="container" id="championship">
+        <div class="notificaions" id="notificaions"></div>
         <img src="log_gincana.png" style="margin-bottom: -5%; max-width: 30%; height: auto;">
     
         <main class="matches">
@@ -41,7 +43,6 @@
                     </div>
                 </div>
             </div>
-            
             <div class="levels">
                 <!-- Quartas left -->
                 <div class="matches-levels">
@@ -132,9 +133,30 @@
         </main>
     
         <img src="logo_jovens.png" style="margin-top: -5%; max-width: 5%; height: auto;">
-        
-        <div class="reset-button">
-            <input type="button" id="restart-cp-btn" value="RESTART"/>
+
+        <div class="div-reset">
+            <input type="button" id="restart-cp-btn" class="btn btn-reset" value="reiniciar" data-toggle="modal" data-target="#restartModal"/>
+        </div>
+    </div>
+
+    <!-- Restart Modal -->
+    <div class="modal fade" id="restartModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="restartModalLabel">Reiniciar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            Você tem certeza que deseja reiniciar o campeonato? Todos os dados serão perdidos.
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="restartChampionship()">Reiniciar</button>
+            </div>
+        </div>
         </div>
     </div>
 </body>
