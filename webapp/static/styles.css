@@ -73,6 +73,48 @@ body {
     height: 70%;
 }
 
+.match-detail-right {
+    border-style: groove;
+    border-color: #5F9EF9;
+    position: relative;
+    margin-bottom: -57%;
+    width: 90%;
+    margin-right: -30%;
+    height: 50px;
+    border-radius: 3px;
+    border-style: solid;
+    border-left: none;
+    z-index: -1;
+}
+
+.match-detail-left {
+    border-style: groove;
+    border-color: #5F9EF9;
+    position: relative;
+    margin-bottom: -57%;
+    width: 90%;
+    margin-left: -30%;
+    height: 50px;
+    border-style: solid;
+    border-radius: 3px;
+    border-right: none;
+    z-index: -1;
+}
+
+.match-detail-final {
+    border-style: groove;
+    border-color: #5F9EF9;
+    position: relative;
+    width: 240%;
+    height: 90px;
+    border-style: solid;
+    border-radius: 3px;
+    border-bottom: none;
+    z-index: -1;
+    margin-left: -70%;
+    margin-bottom: -75%;
+}
+
 .levels {
     display: flex;
     flex-direction: column;
@@ -153,4 +195,69 @@ body {
     background-color: #662D91;
     border-color: #662D91;
     color: white;
+}
+
+@-webkit-keyframes borderBlink {    
+    from, to {    
+        border-color: transparent;
+    }
+    1% {
+        border-left-color: #ff0000;
+        border-top-color: #ff0000;
+        border-right-color: #3aea95;
+        border-bottom-color: #3aea95;
+    }
+    25% {    
+        border-left-color: #3aea95;
+        border-top-color: #ff0000;
+        border-right-color: #ff0000;
+        border-bottom-color: #3aea95;
+    }   
+    50% {    
+        border-left-color: #3aea95;
+        border-top-color: #3aea95;
+        border-right-color: #ff0000;
+        border-bottom-color: #ff0000; 
+    }
+    75%{
+        border-left-color: #ff0000;
+        border-top-color: #3aea95;
+        border-right-color: #3aea95;
+        border-bottom-color: #ff0000;
+    }
+}    
+@keyframes borderBlink {    
+    from, to {    
+        border-color: transparent;
+    }
+    1% {
+        border-left-color: #ff0000;
+        border-top-color: #ff0000;
+        border-right-color: #3aea95;
+        border-bottom-color: #3aea95;
+    }
+    25% {    
+        border-left-color: #3aea95;
+        border-top-color: #ff0000;
+        border-right-color: #ff0000;
+        border-bottom-color: #3aea95;
+    }   
+    50% {    
+        border-left-color: #3aea95;
+        border-top-color: #3aea95;
+        border-right-color: #ff0000;
+        border-bottom-color: #ff0000; 
+    }
+    75%{
+        border-left-color: #ff0000;
+        border-top-color: #3aea95;
+        border-right-color: #3aea95;
+        border-bottom-color: #ff0000;
+    }
+}    
+.borderBlink {    
+    border:1px solid transparent;
+    border-radius: 5px;
+    -webkit-animation: borderBlink 492ms step-end infinite;    
+    animation: borderBlink 492ms step-end infinite;
 }
