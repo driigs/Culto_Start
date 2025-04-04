@@ -1,0 +1,19 @@
+FROM node:22
+
+COPY ./webserver/.nvmrc .
+COPY ./webserver/package.json .
+COPY ./webserver/package-lock.json .
+
+ENV NODE_ENV='production'
+RUN npm install
+
+COPY ./webserver/src/ ./src/
+
+ARG A_PORT="3000"
+EXPOSE $A_PORT
+
+ARG A_MONGO_URI="mongodb://host.docker.internal:27017/start"
+
+ENV PORT=$A_PORT
+ENV MONGO_URI=$A_MONGO_URI
+CMD ["npm", "start"]

@@ -1,0 +1,17 @@
+server {
+    listen ${PORT};
+    root /usr/share/nginx/html;
+
+    location / {
+        try_files $uri $uri/index.htm $uri.htm $uri/index.html $uri.html =404;
+    }
+
+    location ~ \.(gif|jpg|png)$ {
+        root /usr/share/nginx/images;
+    }
+
+    location /api/ {
+        rewrite    ^\/api\/(.*) /$1 break;
+        proxy_pass http://host.docker.internal:3000;
+    }
+}

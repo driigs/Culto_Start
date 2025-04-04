@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <!-- Custom -->
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <div class="container" id="championship">
+        <div class="notificaions" id="notificaions"></div>
+        <img src="log_gincana.png" style="margin-bottom: -5%; max-width: 30%; height: auto;">
+    
+        <main class="matches">
+            <div class="levels">
+                <!-- Oitavas left -->
+                <div class="matches-levels">
+                    <div class="match" data-side="left" data-level="1" data-mId="1" data-wnm-side="left" data-wnm-level="2" data-wnm-mId="1" data-wnm-player="A">
+                        <div class="match-detail-right"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                    <div class="match" data-side="left" data-level="1" data-mId="2" data-wnm-side="left" data-wnm-level="2" data-wnm-mId="1" data-wnm-player="B">
+                        <div class="match-detail-right"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                    <div class="match" data-side="left" data-level="1" data-mId="3" data-wnm-side="left" data-wnm-level="2" data-wnm-mId="2" data-wnm-player="A">
+                        <div class="match-detail-right"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                    <div class="match" data-side="left" data-level="1" data-mId="4" data-wnm-side="left" data-wnm-level="2" data-wnm-mId="2" data-wnm-player="B">
+                        <div class="match-detail-right"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                </div>
+            </div>
+            <div class="levels">
+                <!-- Quartas left -->
+                <div class="matches-levels">
+                    <div class="match" data-side="left" data-level="2" data-mId="1" data-wnm-side="left" data-wnm-level="3" data-wnm-mId="1" data-wnm-player="A">
+                        <div class="match-detail-right"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                    <div class="match" data-side="left" data-level="2" data-mId="2" data-wnm-side="left" data-wnm-level="3" data-wnm-mId="1" data-wnm-player="B">
+                        <div class="match-detail-right"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                </div>
+            </div>
+            <div class="levels">
+                <!-- Semifinal left -->
+                <div class="matches-levels">
+                    <div class="match" data-side="left" data-level="3" data-mId="1" data-wnm-side="final" data-wnm-level="1" data-wnm-mId="1" data-wnm-player="A">
+                        <div class="match-detail-right"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                </div>
+            </div>
+            <div class="levels">
+                <!-- Final left -->
+                <div class="matches-levels">
+                    <div class="match" data-side="final" data-level="1" data-mId="1">
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_final_score_a" placeholder="0"/></div>
+                    </div>
+                </div>
+            </div>
+            <div class="levels">
+                <!-- Vencedor -->
+                <div class="levels-winner">
+                    <div class="match-detail-final"></div>
+                    <div class="winner borderBlink" id="winner"><input type="text" id="p_winner_name" placeholder="WINNER" disabled/></div>
+                </div>
+            </div>
+            <div class="levels">
+                <!-- Final right -->
+                <div class="matches-levels">
+                    <div class="match" data-side="final" data-level="1" data-mId="1">
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_final_score_b" placeholder="0"/></div>
+                    </div>
+                </div>
+            </div>
+            <div class="levels">
+                <!-- Semifinal right -->
+                <div class="matches-levels">
+                    <div class="match" data-side="right" data-level="3" data-mId="1" data-wnm-side="final" data-wnm-level="1" data-wnm-mId="1" data-wnm-player="B">
+                        <div class="match-detail-left"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                </div>
+            </div>
+            <div class="levels">
+                <!-- Quartas Right -->
+                <div class="matches-levels">
+                    <div class="match" data-side="right" data-level="2" data-mId="1" data-wnm-side="right" data-wnm-level="3" data-wnm-mId="1" data-wnm-player="A">
+                        <div class="match-detail-left"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                    <div class="match" data-side="right" data-level="2" data-mId="2" data-wnm-side="right" data-wnm-level="3" data-wnm-mId="1" data-wnm-player="B">
+                        <div class="match-detail-left"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                </div>
+            </div>
+            <div class="levels">
+                <!-- Oitavas Right -->
+                <div class="matches-levels">
+                    <div class="match" data-side="right" data-level="1" data-mId="1" data-wnm-side="right" data-wnm-level="2" data-wnm-mId="1" data-wnm-player="A">
+                        <div class="match-detail-left"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                    <div class="match" data-side="right" data-level="1" data-mId="2" data-wnm-side="right" data-wnm-level="2" data-wnm-mId="1" data-wnm-player="B">
+                        <div class="match-detail-left"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                    <div class="match" data-side="right" data-level="1" data-mId="3" data-wnm-side="right" data-wnm-level="2" data-wnm-mId="2" data-wnm-player="A">
+                        <div class="match-detail-left"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                    <div class="match" data-side="right" data-level="1" data-mId="4" data-wnm-side="right" data-wnm-level="2" data-wnm-mId="2" data-wnm-player="B">
+                        <div class="match-detail-left"></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_a" placeholder="Player A"/><input type="number" name="p_score_a" placeholder="0"/></div>
+                        <div class="player-score borderBlink"><input type="text" name="p_name_b" placeholder="Player B"/><input type="number" name="p_score_b" placeholder="0"/></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    
+        <img src="logo_jovens.png" style="margin-top: -5%; max-width: 5%; height: auto;">
+
+        <div class="div-reset">
+            <input type="button" id="restart-cp-btn" class="btn btn-reset" value="reiniciar" data-toggle="modal" data-target="#restartModal"/>
+        </div>
+    </div>
+
+    <!-- Restart Modal -->
+    <div class="modal fade" id="restartModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="restartModalLabel">Reiniciar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+            Você tem certeza que deseja reiniciar o campeonato? Todos os dados serão perdidos.
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="restartChampionship()">Reiniciar</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
